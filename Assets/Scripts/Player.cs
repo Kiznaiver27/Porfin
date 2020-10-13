@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _vel;
+    private float _vel = 10f;
 
     private void Update()
     {

@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
         if(ot.gameObject.tag == "Player")
         {
             ScoreScript.scoreValue++;
-            LevelManager.CoinsRemaining++;
+            LevelManager.CoinsRemaining += 1;
             Destroy(this.gameObject);
         }
     }
