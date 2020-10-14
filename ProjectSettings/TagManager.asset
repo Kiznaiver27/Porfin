@@ -8,6 +8,7 @@ TagManager:
   - FinalPanel
   - WinText
   - LostText
+  - Score
   layers:
   - Default
   - TransparentFX

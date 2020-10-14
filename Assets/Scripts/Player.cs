@@ -6,24 +6,25 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _vel = 10f;
+    private Rigidbody _rb;
 
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        PlayerMovement();
+    }
+    private void PlayerMovement()
+    {
+        float hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+
+        Vector3 playerMovement = new Vector3(hor, 0f, ver).normalized * _vel * Time.deltaTime;
+        transform.Translate(playerMovement, Space.Self);
+        if (!Input.GetKey(KeyCode.None))
         {
-            this.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + _vel * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            this.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - _vel * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            this.transform.position = new Vector3(transform.position.x - _vel * Time.deltaTime, transform.position.y, transform.position.z);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.transform.position = new Vector3(transform.position.x + _vel * Time.deltaTime, transform.position.y, transform.position.z);
         }
     }
 }

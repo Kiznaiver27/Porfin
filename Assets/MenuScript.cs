@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Panel;
     public void Restart()
     {
-        Panel.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneBuildIndex: 0);
     }
