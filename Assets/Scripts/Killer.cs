@@ -8,6 +8,8 @@ public class Killer : MonoBehaviour
     {
         if(ot.gameObject.tag == "Player")
         {
+            FindObjectOfType<AudioManager>().Stop("MainMusic");
+            FindObjectOfType<AudioManager>().Play("Death");
             Destroy(ot.gameObject);
         }
     }

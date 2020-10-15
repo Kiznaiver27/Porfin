@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _vel = 10f;
     private Rigidbody _rb;
-
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();

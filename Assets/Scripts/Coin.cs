@@ -13,7 +13,8 @@ public class Coin : MonoBehaviour
     {
         if(ot.gameObject.tag == "Player")
         {
-            LevelManager.CoinsRemaining += 1;
+            FindObjectOfType<AudioManager>().Play("CollectCoin");
+            GameManager.CoinsRemaining += 1;
             Destroy(this.gameObject);
         }
     }
