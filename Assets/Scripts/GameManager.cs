@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         cam1.SetActive(true);
         cam2.SetActive(false);
         //
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
         }
     }
 }

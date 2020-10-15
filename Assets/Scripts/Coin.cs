@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
 
     private enum Type { Spin, Horizontal, Vertical};
-    [SerializeField]
-    private Type type = Type.Spin;
-
+    [SerializeField] private Type type = Type.Spin;
+    [SerializeField] private float _maxX = 1;
+    [SerializeField] private float _maxY = 1;
+    private Vector3 _positionInitial;
+    [SerializeField] private bool _vuelta = false;
+    private void Start()
+    {
+        _positionInitial = this.gameObject.transform.position;
+    }
     private void OnTriggerEnter(Collider ot)
     {
         if(ot.gameObject.tag == "Player")
@@ -20,17 +27,50 @@ public class Coin : MonoBehaviour
     }
     void Update()
     {
-        if (type == Type.Spin)
+
+        switch (type)
         {
-            transform.Rotate(0, 1, 0);
-        }
-        if (type == Type.Horizontal)
-        {
-            transform.Rotate(1, 0, 0);
-        }
-        if (type == Type.Vertical)
-        {
-            transform.Rotate(0, 0, 1);
+            case Type.Spin:
+                transform.Rotate(0, 50 * Time.deltaTime, 0);
+                break;
+
+            case Type.Horizontal:
+                if (transform.position.x >= (_positionInitial.x + _maxX))
+                {
+                    _vuelta = false;
+                }
+                else if (transform.position.x <= _positionInitial.x)
+                {
+                    _vuelta = true;
+                }
+                if (_vuelta)
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    transform.Translate(Vector3.left * Time.deltaTime, Space.World);
+                }
+                break;
+
+            case Type.Vertical:
+                if (transform.position.y >= (_positionInitial.y + _maxY))
+                {
+                    _vuelta = false;
+                }
+                else if (transform.position.y <= _positionInitial.y)
+                {
+                    _vuelta = true;
+                }
+                if (_vuelta)
+                {
+                    transform.Translate(Vector3.up * Time.deltaTime, Space.World);
+                }
+                else
+                {
+                    transform.Translate(Vector3.down * Time.deltaTime, Space.World);
+                }
+                break;
         }
     }
 }
