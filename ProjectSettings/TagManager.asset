@@ -9,6 +9,8 @@ TagManager:
   - WinText
   - LostText
   - Score
+  - Floor
+  - Scalable
   layers:
   - Default
   - TransparentFX

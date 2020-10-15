@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static Status status;
     //Coins
     private int CoinsInitials = 0;
-    public static int CoinsRemaining = 0;
+    public static int CoinsRemaining { get; set; }
 
     //Score
     [SerializeField] private Text scoreText;

@@ -7,12 +7,24 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _vel = 10f;
     private Rigidbody _rb;
+    private enum State { OnFloor, OnScalable}
+    [SerializeField] private State state = State.OnFloor;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
+        switch (state)
+        {
+            case State.OnFloor:
+                PlayerMovement();
+                break;
+
+            case State.OnScalable:
+
+                break;
+        }
         PlayerMovement();
     }
     private void PlayerMovement()
@@ -26,4 +38,5 @@ public class Player : MonoBehaviour
         {
         }
     }
+
 }

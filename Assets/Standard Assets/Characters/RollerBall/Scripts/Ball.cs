@@ -21,7 +21,26 @@ namespace UnityStandardAssets.Vehicles.Ball
             GetComponent<Rigidbody>().maxAngularVelocity = m_MaxAngularVelocity;
         }
 
+        public void Scalable()
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(Vector3.up * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime, Space.Self);
+            }
+            if(Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.left * Time.deltaTime, Space.Self);
+            }
+            if(Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(Vector3.back * Time.deltaTime, Space.Self);
+            }
 
+        }
         public void Move(Vector3 moveDirection, bool jump)
         {
             // If using torque to rotate the ball...

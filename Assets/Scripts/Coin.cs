@@ -12,8 +12,10 @@ public class Coin : MonoBehaviour
     [SerializeField] private float _maxY = 1;
     private Vector3 _positionInitial;
     [SerializeField] private bool _vuelta = false;
+    private GameManager _Score;
     private void Start()
     {
+        _Score = GetComponent<GameManager>();
         _positionInitial = this.gameObject.transform.position;
     }
     private void OnTriggerEnter(Collider ot)
@@ -22,6 +24,7 @@ public class Coin : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("CollectCoin");
             GameManager.CoinsRemaining += 1;
+            
             Destroy(this.gameObject);
         }
     }

@@ -15,6 +15,8 @@ namespace UnityStandardAssets.Vehicles.Ball
         private Vector3 camForward; // The current forward direction of the camera
         private bool jump; // whether the jump button is currently pressed
 
+        private enum State { OnFloor, OnScalable }
+        [SerializeField] private State state = State.OnFloor;
 
         private void Awake()
         {
@@ -57,13 +59,37 @@ namespace UnityStandardAssets.Vehicles.Ball
                 move = (v*Vector3.forward + h*Vector3.right).normalized;
             }
         }
-
+        private void OnTriggerEnter(Collider ot)
+        {
+            if (ot.gameObject.CompareTag("Scalable"))
+            {
+                state = State.OnScalable;
+            }
+        }
+        private void OnCollisionEnter(Collision col)
+        {
+            if (col.gameObject.CompareTag("Floor"))
+            {
+                state = State.OnFloor;
+            }
+        }
+        
 
         private void FixedUpdate()
         {
+            switch (state)
+            {
+                case State.OnFloor:
+                    ball.Move(move, jump);
+                    jump = false;
+                    break;
+
+                case State.OnScalable:
+                    ball.Scalable();
+                    break;
+            }
             // Call the Move function of the ball controller
-            ball.Move(move, jump);
-            jump = false;
+            
         }
     }
 }
