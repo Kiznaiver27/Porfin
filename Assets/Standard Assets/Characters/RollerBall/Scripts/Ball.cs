@@ -21,24 +21,10 @@ namespace UnityStandardAssets.Vehicles.Ball
             GetComponent<Rigidbody>().maxAngularVelocity = m_MaxAngularVelocity;
         }
 
-        public void Scalable()
+        public void Scalable(Vector3 moveDirection)
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                transform.Translate(Vector3.up * Time.deltaTime);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Translate(Vector3.right * Time.deltaTime, Space.Self);
-            }
-            if(Input.GetKey(KeyCode.A))
-            {
-                transform.Translate(Vector3.left * Time.deltaTime, Space.Self);
-            }
-            if(Input.GetKey(KeyCode.S))
-            {
-                transform.Translate(Vector3.back * Time.deltaTime, Space.Self);
-            }
+                m_Rigidbody.AddTorque(new Vector3(moveDirection.z, -moveDirection.x, -moveDirection.x) * m_MovePower);
+                m_Rigidbody.AddForce(moveDirection * m_MovePower);
 
         }
         public void Move(Vector3 moveDirection, bool jump)

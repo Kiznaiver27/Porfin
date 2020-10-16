@@ -9,6 +9,7 @@ public class Scalable : MonoBehaviour
         if (ot.gameObject.CompareTag("Player"))
         {
             ot.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            //ot.gameObject.GetComponent<Rigidbody>();
         }
     }
     private void OnTriggerExit(Collider ot)

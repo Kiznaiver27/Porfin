@@ -85,7 +85,7 @@ namespace UnityStandardAssets.Vehicles.Ball
                     break;
 
                 case State.OnScalable:
-                    ball.Scalable();
+                    ball.Scalable(move);
                     break;
             }
             // Call the Move function of the ball controller
