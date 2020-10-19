@@ -20,4 +20,16 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Stop();
+        }
+    }
+
+    public void Stop()
+    {
+        Debug.Log("Hey");
+    }
 }

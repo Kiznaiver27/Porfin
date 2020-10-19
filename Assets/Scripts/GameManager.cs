@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
         if (CoinsInitials == CoinsRemaining)
         {
             Result(Win,Lost);
+            FindObjectOfType<AudioManager>().Stop("MainMusic");
+            FindObjectOfType<AudioManager>().Play("Win");
             CoinsRemaining = 0;
         }
         //Lost (Player Death)
